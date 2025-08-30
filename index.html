@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orthopédagogue - Services Professionnels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .menu-open { transform: translateX(0); }
+        .menu-closed { transform: translateX(-100%); }
+        .fade-in { opacity: 1; transform: translateY(0); }
+        .fade-out { opacity: 0; transform: translateY(20px); }
+        .section-content { 
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header avec menu hamburger -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-indigo-600">📚 Orthopédagogie</div>
+                </div>
+                <button id="menuToggle" class="lg:hidden p-2 rounded-md text-gray-600 hover:text-indigo-600 hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <!-- Menu desktop -->
+                <nav class="hidden lg:flex space-x-8">
+                    <button onclick="showSection('about')" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md font-medium transition-colors">À propos de moi</button>
+                    <button onclick="showSection('services')" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md font-medium transition-colors">Services et compétences</button>
+                    <button onclick="showSection('methods')" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md font-medium transition-colors">Méthodes et approche</button>
+                    <button onclick="showSection('skills')" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md font-medium transition-colors">Compétences clés</button>
+                    <button onclick="showSection('contact')" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md font-medium transition-colors">Contact</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu mobile coulissant -->
+    <div id="mobileMenu" class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform menu-closed transition-transform duration-300 ease-in-out lg:hidden">
+        <div class="flex items-center justify-between p-4 border-b">
+            <span class="text-xl font-semibold text-indigo-600">☰ Menu</span>
+            <button id="closeMenu" class="p-2 rounded-md text-gray-600 hover:text-indigo-600 hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="mt-4">
+            <button onclick="showSection('about'); closeMobileMenu()" class="mobile-nav-link w-full text-left px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">À propos de moi</button>
+            <button onclick="showSection('services'); closeMobileMenu()" class="mobile-nav-link w-full text-left px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">Services et compétences</button>
+            <button onclick="showSection('methods'); closeMobileMenu()" class="mobile-nav-link w-full text-left px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">Méthodes et approche</button>
+            <button onclick="showSection('skills'); closeMobileMenu()" class="mobile-nav-link w-full text-left px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">Compétences clés</button>
+            <button onclick="showSection('contact'); closeMobileMenu()" class="mobile-nav-link w-full text-left px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">Contact</button>
+        </nav>
+    </div>
+
+    <!-- Overlay pour menu mobile -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden" onclick="closeMobileMenu()"></div>
+
+    <!-- Contenu principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Section À propos de moi -->
+        <section id="about" class="section-content fade-in">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="text-center mb-8">
+                    <div class="w-32 h-32 bg-indigo-100 rounded-full mx-auto mb-6 flex items-center justify-center text-6xl">👩‍🏫</div>
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">À propos de moi</h1>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Mon parcours</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Passionnée par l'apprentissage et le développement des compétences, je suis orthopédagogue diplômée avec plusieurs années d'expérience dans l'accompagnement d'enfants et d'adolescents présentant des difficultés d'apprentissage.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Ma mission est d'aider chaque apprenant à développer son plein potentiel en utilisant des méthodes adaptées et personnalisées.
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Ma philosophie</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 mr-3">✓</span>
+                                <span class="text-gray-600">Approche bienveillante et respectueuse</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 mr-3">✓</span>
+                                <span class="text-gray-600">Méthodes basées sur les recherches actuelles</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 mr-3">✓</span>
+                                <span class="text-gray-600">Collaboration étroite avec les familles</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 mr-3">✓</span>
+                                <span class="text-gray-600">Adaptation aux besoins individuels</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Services et compétences -->
+        <section id="services" class="section-content fade-out hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Services et compétences</h1>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
+                        <div class="text-3xl mb-4">📖</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Difficultés de lecture</h3>
+                        <p class="text-gray-600">Accompagnement pour la dyslexie, troubles de décodage et compréhension de lecture.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg">
+                        <div class="text-3xl mb-4">✍️</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Troubles de l'écriture</h3>
+                        <p class="text-gray-600">Soutien pour la dysgraphie, dysorthographie et expression écrite.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-lg">
+                        <div class="text-3xl mb-4">🔢</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Difficultés mathématiques</h3>
+                        <p class="text-gray-600">Intervention pour la dyscalculie et les troubles du raisonnement logique.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-lg">
+                        <div class="text-3xl mb-4">🧠</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Fonctions exécutives</h3>
+                        <p class="text-gray-600">Développement de l'attention, mémoire de travail et planification.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-lg">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Méthodes de travail</h3>
+                        <p class="text-gray-600">Enseignement de stratégies d'apprentissage efficaces et personnalisées.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-lg">
+                        <div class="text-3xl mb-4">👥</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Accompagnement familial</h3>
+                        <p class="text-gray-600">Conseils et formation pour soutenir l'enfant à la maison.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Méthodes et approche -->
+        <section id="methods" class="section-content fade-out hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Méthodes et approche</h1>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="border-l-4 border-indigo-600 pl-6">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-3">🔍 Évaluation personnalisée</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Chaque intervention commence par une évaluation approfondie des forces et défis de l'apprenant. J'utilise des outils standardisés et des observations cliniques pour établir un profil d'apprentissage complet.
+                        </p>
+                    </div>
+                    
+                    <div class="border-l-4 border-green-600 pl-6">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-3">📋 Plan d'intervention individualisé</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Basé sur l'évaluation, je développe un plan d'intervention sur mesure avec des objectifs clairs, mesurables et adaptés au rythme de chaque enfant.
+                        </p>
+                    </div>
+                    
+                    <div class="border-l-4 border-purple-600 pl-6">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-3">🎮 Approches ludiques et motivantes</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            J'intègre des éléments ludiques et des supports variés pour maintenir l'engagement et rendre l'apprentissage plaisant et significatif.
+                        </p>
+                    </div>
+                    
+                    <div class="border-l-4 border-orange-600 pl-6">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-3">📊 Suivi et ajustements</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Un suivi régulier permet d'ajuster les interventions selon les progrès observés et d'assurer une progression optimale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Compétences clés -->
+        <section id="skills" class="section-content fade-out hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Compétences clés</h1>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Expertise technique</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Évaluation orthopédagogique</span>
+                                <div class="w-32 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Intervention spécialisée</span>
+                                <div class="w-32 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Adaptation pédagogique</span>
+                                <div class="w-32 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Outils technologiques</span>
+                                <div class="w-32 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Compétences relationnelles</h2>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-gray-800 mb-2">🤝 Communication</h3>
+                                <p class="text-gray-600 text-sm">Capacité à établir une relation de confiance avec l'enfant et sa famille</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-gray-800 mb-2">💡 Créativité</h3>
+                                <p class="text-gray-600 text-sm">Développement d'approches innovantes et adaptées</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-gray-800 mb-2">🎯 Patience</h3>
+                                <p class="text-gray-600 text-sm">Accompagnement respectueux du rythme de chaque apprenant</p>
+                            </div>
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-gray-800 mb-2">🔄 Adaptabilité</h3>
+                                <p class="text-gray-600 text-sm">Ajustement constant des méthodes selon les besoins</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="section-content fade-out hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Contact</h1>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Prenons contact</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-indigo-600 text-xl">📞</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Téléphone</p>
+                                    <p class="text-gray-600">+33 X XX XX XX XX</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-indigo-600 text-xl">✉️</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Email</p>
+                                    <p class="text-gray-600">contact@orthopedagogue.fr</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-indigo-600 text-xl">📍</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Adresse</p>
+                                    <p class="text-gray-600">123 Rue de l'Éducation<br>75000 Paris</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-indigo-600 text-xl">🕒</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Horaires</p>
+                                    <p class="text-gray-600">Lun-Ven: 9h-18h<br>Sur rendez-vous</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Formulaire de contact</h2>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                            <p class="text-yellow-800 text-sm">
+                                <strong>Demo:</strong> Ce formulaire est à titre d'exemple. Pour un site fonctionnel, il faudrait configurer l'envoi d'emails côté serveur.
+                            </p>
+                        </div>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Votre nom">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="votre@email.fr">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Sujet</label>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option>Demande d'information</option>
+                                    <option>Prise de rendez-vous</option>
+                                    <option>Question sur les services</option>
+                                    <option>Autre</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Votre message..."></textarea>
+                            </div>
+                            <button type="button" onclick="showContactConfirmation()" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors font-medium">
+                                Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Gestion du menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('menu-closed');
+            mobileMenu.classList.add('menu-open');
+            overlay.classList.remove('hidden');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('menu-open');
+            mobileMenu.classList.add('menu-closed');
+            overlay.classList.add('hidden');
+        }
+
+        closeMenu.addEventListener('click', closeMobileMenu);
+
+        // Gestion des sections
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.classList.add('fade-out', 'hidden');
+                section.classList.remove('fade-in');
+            });
+
+            // Afficher la section demandée
+            setTimeout(() => {
+                const targetSection = document.getElementById(sectionId);
+                targetSection.classList.remove('hidden', 'fade-out');
+                targetSection.classList.add('fade-in');
+            }, 150);
+
+            // Mettre à jour les liens actifs (desktop)
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('text-indigo-600', 'bg-indigo-50');
+                link.classList.add('text-gray-700');
+            });
+
+            // Mettre à jour les liens actifs (mobile)
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.classList.remove('text-indigo-600', 'bg-indigo-50');
+                link.classList.add('text-gray-700');
+            });
+        }
+
+        // Fonction pour la confirmation de contact
+        function showContactConfirmation() {
+            alert('Merci pour votre message ! Dans un vrai site, ceci enverrait votre demande par email.');
+        }
+
+        // Afficher la première section par défaut
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('about');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9774c286b24e6f1b',t:'MTc1NjU2MTg1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
